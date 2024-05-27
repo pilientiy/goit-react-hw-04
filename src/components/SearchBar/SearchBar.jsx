@@ -1,44 +1,39 @@
-import {CiSearch} from "react-icons/ci";
-import {useFormik} from "formik";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import css from "./SearchBar.module.css";
 
-const SearchBar = ({setNewQuery}) => {
-    const formik = useFormik({
-        initialValues: {
-            query: ''
-        },
-        onSubmit: (values, {resetForm}) => {
-            if (values.query.trim() === '') {
-                toast.error(`You can't send empty data!`, {
-                    position: 'top-right',
-                });
-                return
-            }
-            setNewQuery(values.query);
-            resetForm();
-        },
-    })
-    return (
-        <>
-            <form onSubmit={formik.handleSubmit}
-                  className='flex justify-center w-full bg-blue-700 py-5'
-            >
-                <label className='relative w-1/5'>
-                    <input type='text'
-                           value={formik.values.query}
-                           onChange={formik.handleChange}
-                           name='query'
-                           className='border w-full border-solid rounded border-blue-600 pl-8 py-2'
-                    />
-                    <button className='absolute top-1/2 -translate-x-1/2 -translate-y-1/2 left-4'
-                            type='submit'
-                    >
-                        <CiSearch size={22} />
-                    </button>
+const SearchBar = ({ onSearch }) => {
 
-                </label>
-            </form>
-        </>
-    );
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    const form = evt.target.elements.picture.value;
+
+    if (form.trim() === "") {
+      toast("Please enter search term!");
+      return;
+    }
+
+    onSearch(form);
+    evt.target.reset();
+  };
+
+  return (
+    <header className={css.header}>
+      <form className={css.form} onSubmit={handleSubmit}>
+        <input
+          className={css.input}
+          type="text"
+          name="picture"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+        />
+        <button className={css.button} type="submit">
+          Search
+        </button>
+      </form>
+      <Toaster position="top-center" reverseOrder={false} />
+    </header>
+  );
 };
-export default SearchBar
+
+export default SearchBar;

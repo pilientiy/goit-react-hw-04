@@ -1,0 +1,19 @@
+.message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px 20px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+}
+
+.message::before {
+  content: "\26A0\FE0F"; 
+  margin-right: 8px;
+  font-size: 20px;
+}

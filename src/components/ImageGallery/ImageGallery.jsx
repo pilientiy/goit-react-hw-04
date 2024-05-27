@@ -1,15 +1,23 @@
-const ImageGallery = ({
-                          children
-                      }) => {
+import ImageCard from "../ImageCard/ImageCard";
+import css from "./ImageGallery.module.css";
 
-
-    return (
-        <>
-            <ul className='flex w-10/12 mx-auto my-5 gap-4 items-center flex-wrap'>
-                {children}
-            </ul>
-
-        </>
-    );
+const ImageGallery = ({ pictures, openModal }) => {
+  return (
+    <ul className={css.container}>
+      {pictures.map(({ id, urls, alt_description }) => (
+        <li
+          key={id}
+          className={css.item}
+        >
+          <ImageCard
+            url={urls}
+            description={alt_description}
+            openModal={openModal}
+          />
+        </li>
+      ))}
+    </ul>
+  );
 };
-export default ImageGallery
+
+export default ImageGallery;

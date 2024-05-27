@@ -1,25 +1,35 @@
-import Modal from 'react-modal';
-import {lockedScroll} from "@/services/lockedScroll.js";
+import Modal from "react-modal";
 
+const ImageModal = ({ isOpen, onRequestClose, image, onKeyDown }) => {
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      onKeyDown={onKeyDown}
+      contentLabel="Image Modal"
+      style={{
+        overlay: {
+          backgroundColor: "rgba(0, 0, 0, 0.75)",
+        },
+        content: {
+          maxWidth: "50%",
+          maxHeight: "50%",
+          margin: "auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+      }}
+    >
+      {image && (
+        <img
+          src={image}
+          alt="Modal Image"
+          style={{ maxWidth: "100%", maxHeight: "100%" }}
+        />
+      )}
+    </Modal>
+  );
+};
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#modal-root');
-
-const ImageModal = ({
-                        children,
-                        handleClose,
-                        modalIsOpen
-                    }) => {
-    lockedScroll(modalIsOpen);
-    return (<div>
-        <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={() => handleClose()}
-            contentLabel="Example Modal"
-        >
-            {children}
-        </Modal>
-    </div>);
-}
-
-export default ImageModal
+export default ImageModal;

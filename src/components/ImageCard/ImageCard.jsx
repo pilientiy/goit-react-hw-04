@@ -1,25 +1,16 @@
-import style from "./ImageCard.module.css";
+import css from "./ImageCard.module.css";
 
-const ImageCard = ({
-                       card,
-                       setImageModal,
-                       toggleModal,
-                   }) => {
-    const handleClickCard = () => {
-        setImageModal(card.urls.full);
-        toggleModal()
-    }
-    return (
-        <li className={`h-80 ${style.card}`}
-
-        >
-            <img src={card.urls.raw}
-                 onClick={handleClickCard}
-                 loading='lazy'
-                 className='w-full h-full'
-                 alt=''
-            />
-        </li>
-    );
+const ImageCard = ({ url, description, openModal }) => {
+  return (
+    <div className={css.photoContainer}>
+      <img
+        src={url.small}
+        alt={description}
+        className={css.photo}
+        onClick={() => openModal(url.regular)}
+      />
+    </div>
+  );
 };
-export default ImageCard
+
+export default ImageCard;

@@ -1,9 +1,7 @@
-const ErrorMessage = ({error}) => {
-    return (
-        <div className='flex justify-center items-center'>
-            <h2>На сайте произошла ошибка {error.message}. Пожалуйста
-                перезагрузите страничку</h2>
-        </div>
-    );
+import css from "./ErrorMessage.module.css";
+
+const ErrorMessage = () => {
+  return <p className={css.message}>Unstable connection, please try again</p>;
 };
-export default ErrorMessage
+
+export default ErrorMessage;

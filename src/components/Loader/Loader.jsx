@@ -1,10 +1,17 @@
-import style from './Loader.module.css'
+import { Blocks } from "react-loader-spinner";
 
 const Loader = () => {
-    return (
-        <div className='w-svw h-svh flex justify-center items-center'>
-            <span className={style.loader}></span>
-        </div>
-    );
+  return (
+    <Blocks
+      height="80"
+      width="80"
+      color="#4CAF50"
+      ariaLabel="blocks-loading"
+      wrapperStyle={{}}
+      wrapperClass="blocks-wrapper"
+      visible={true}
+    />
+  );
 };
-export default Loader
+
+export default Loader;
